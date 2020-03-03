@@ -8,20 +8,31 @@ public class ArrayTing {
         items = new int[length];
     }
 
-    //insert
     public void insert(int item) {
         resizeIfRequired();
         items[count++] = item;
     }
 
-    public void insertAt(int item, int index) {}
+    public void insertAt(int item, int index) {
+        if(index < 0 || index > count)
+            throw new IllegalArgumentException();
+
+        resizeIfRequired();
+
+        //fill the last one than and so on until reach at the index
+        //items[i + 1] => last one
+        for (int i = count - 1; i >= index; i--)
+            items[i + 1] = items[i];
+
+        items[index] = item;
+        count++;
+    }
 
     public void removeAt(int index) {
         if(index < 0 || index >= count)
             throw new IllegalArgumentException();
 
-        //[10,20,30] => remove index 1 => [10,30]
-        for(int i = index; i < count; i++) {
+        for(int i = index; i + 1 < count; i++) {
             items[i] = items[i + 1];
         }
         count--;
@@ -42,14 +53,40 @@ public class ArrayTing {
     }
 
     public int indexOf(int item) {
-        return 0;
+        for(int i = 0; i < count; i++)
+            if(items[i] == item)
+                return i;
+        return -1;
     }
 
     public int max() {
-        return 0;
+        int max = 0;
+        for (int item:items)
+            if (item > max)
+                max = item;
+
+        return max;
     }
 
-    public boolean contains() {
-        return true;
+    public boolean contains(int item) {
+        for (int i:items)
+            if(i == item)
+                return true;
+        return false;
+    }
+
+    public void reverse() {
+        int[] newItems = new int[count];
+        for(int i = 0; i < count; i++)
+            newItems[i] = items[count - (i + 1)];
+        items = newItems;
+    }
+
+    public ArrayTing intersect(ArrayTing other) {
+        ArrayTing intersect = new ArrayTing(count);
+        for(int item:items)
+            if(other.contains(item))
+                intersect.insert(item);
+        return intersect;
     }
 }
