@@ -68,6 +68,30 @@ public class ArrayTing {
         return max;
     }
 
+    public int min() {
+        return 0;
+    }
+
+    public int sum() {
+        return 0;
+    }
+
+    public int countItem(int item) {
+        return 0;
+    }
+
+    public int firstItem() {
+        return 0;
+    }
+
+    public int lastItem() {
+        return 0;
+    }
+
+    public int count() {
+        return count;
+    }
+
     public boolean contains(int item) {
         for (int i:items)
             if(i == item)
