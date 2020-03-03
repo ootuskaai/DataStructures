@@ -7,6 +7,8 @@ public class Main {
         numbers.insert(100);
         numbers.insert(200);
         numbers.insert(300);
+        numbers.reverse();
         numbers.print();
+
     }
 }
