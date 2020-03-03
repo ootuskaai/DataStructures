@@ -72,6 +72,10 @@ public class ArrayTing {
         return 0;
     }
 
+    public int sum() {
+        return 0;
+    }
+
     public int countItem(int item) {
         return 0;
     }
