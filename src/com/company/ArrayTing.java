@@ -1,11 +1,13 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class ArrayTing {
     private int[] items;
     private int count;
 
-    public ArrayTing(int length) {
-        items = new int[length];
+    public ArrayTing(int len) {
+        items = new int[len];
     }
 
     public void insert(int item) {
@@ -47,11 +49,6 @@ public class ArrayTing {
         }
     }
 
-    public void print() {
-        for(int i = 0 ; i < count; i++)
-            System.out.println(items[i]);
-    }
-
     public int indexOf(int item) {
         for(int i = 0; i < count; i++)
             if(items[i] == item)
@@ -60,7 +57,7 @@ public class ArrayTing {
     }
 
     public int max() {
-        int max = 0;
+        int max = items[0];
         for (int item:items)
             if (item > max)
                 max = item;
@@ -69,26 +66,41 @@ public class ArrayTing {
     }
 
     public int min() {
-        return 0;
+        int min = items[0];
+        for(int item:items)
+            if(item < min)
+                min = item;
+        return min;
     }
 
     public int sum() {
-        return 0;
+        int sum = 0;
+        for (int item:items)
+            sum += item;
+        return sum;
     }
 
-    public int countItem(int item) {
-        return 0;
+    public int countByItem(int item) {
+        int countItem = 0;
+        for (int i:items)
+            if(i == item)
+                countItem++;
+        return countItem;
     }
 
     public int firstItem() {
-        return 0;
+        return items[0];
     }
 
     public int lastItem() {
-        return 0;
+        return items[count - 1];
     }
 
-    public int count() {
+    public int lastItemIndex() {
+        return count - 1;
+    }
+
+    public int curCount() {
         return count;
     }
 
@@ -112,5 +124,22 @@ public class ArrayTing {
             if(other.contains(item))
                 intersect.insert(item);
         return intersect;
+    }
+
+    public ArrayTing notIntersect(ArrayTing other) {
+        ArrayTing notIntersect = new ArrayTing(count);
+        for (int item: items)
+            if(!other.contains(item))
+                notIntersect.insert(item);
+        return notIntersect;
+    }
+
+    public void print() {
+        System.out.println(Arrays.toString(items));
+    }
+
+    public void printEach() {
+        for(int item:items)
+            System.out.println(item);
     }
 }
