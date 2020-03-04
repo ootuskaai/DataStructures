@@ -117,4 +117,17 @@ public class LinkedList {
         }
         return arr;
     }
+
+    public void reverse() {
+        //[10 => 20 => 30]
+        //[10 <= 29 <= 30] ==> [30,20,10]
+        Node orFirst = first;
+        Node orLast = last;
+
+        Node curr = last;
+
+
+
+
+    }
 }
