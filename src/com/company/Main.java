@@ -3,12 +3,10 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        ArrayTing numbers = new ArrayTing(3);
-        numbers.insert(100);
-        numbers.insert(200);
-        numbers.insert(100);
-        numbers.insert(200);
-        numbers.insert(100);
-        numbers.print();
+        LinkedList list = new LinkedList();
+        list.addFirst(10);
+        list.addFirst(20);
+        list.addLast(30);
+        list.addFirst(40);
     }
 }
