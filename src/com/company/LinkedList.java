@@ -66,32 +66,29 @@ public class LinkedList {
         if (isEmpty())
             throw new NoSuchElementException();
 
-        if (first == last) {
-            first = last = null;
-            size = 0;
-            return;
+        if (isSame())
+            clear();
+        else {
+            Node second = first.next;
+            first.next = null;
+            first = second;
+            size--;
         }
 
-        Node second = first.next;
-        first.next = null;
-        first = second;
-        size--;
     }
 
     public void removeLast() {
         if(isEmpty())
             throw new NoSuchElementException();
 
-        if (first == last) {
-            first = last = null;
-            size = 0;
-            return;
+        if (first == last)
+            clear();
+        else {
+            Node previous = getPrevious(last);
+            last = previous;
+            last.next = null;
+            size--;
         }
-
-        Node previous = getPrevious(last);
-        last = previous;
-        last.next = null;
-        size--;
     }
 
     private Node getPrevious(Node node) {
@@ -107,7 +104,27 @@ public class LinkedList {
         return size;
     }
 
+    public int[] toArray() {
+        int[] array = new int[size];
+        Node current = first;
+        int index = 0;
+        while (current != null) {
+            array[index++] = current.value;
+            current = current.next;
+        }
+        return array;
+    }
+
     private boolean isEmpty() {
         return first == null;
+    }
+
+    private boolean isSame() {
+        return first == last;
+    }
+
+    private void clear() {
+        first = last = null;
+        size = 0;
     }
 }
