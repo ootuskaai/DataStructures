@@ -6,7 +6,7 @@ public class Main {
         LinkedList list = new LinkedList();
         list.addFirst(10);
         list.addFirst(20);
-        list.addLast(30);
-        list.addFirst(40);
+        list.addFirst(30);
+        boolean b = list.contains(50);
     }
 }
