@@ -27,9 +27,9 @@ public class LinkedList {
         size++;
     }
 
-    public void addLsat(int item) {
+    public void addLast(int item) {
         Node node = new Node(item);
-        if (isEmpty())
+        if(isEmpty())
             first = last = node;
         else {
             last.next = node;
@@ -53,10 +53,10 @@ public class LinkedList {
     }
 
     public void removeLast() {
-        if (isEmpty())
+        if(isEmpty())
             throw new NoSuchElementException();
 
-        if (isSame())
+        if(isSame())
             clear();
         else {
             Node prev = getPrevious(last);
@@ -66,25 +66,25 @@ public class LinkedList {
         }
     }
 
-    private Node getPrevious(Node node) {
-        Node cur = first;
-        while (cur != null) {
-            if (cur.next == node) return cur;
-            cur = cur.next;
-        }
-        return null;
-    }
-
     public int size() {
         return size;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return first == null;
     }
 
-    private boolean isSame() {
+    public boolean isSame() {
         return first == last;
+    }
+
+    private Node getPrevious(Node node) {
+        Node curr = first;
+        while (curr != null) {
+            if(curr.next == node) return curr;
+            curr = curr.next;
+        }
+        return null;
     }
 
     private void clear() {
@@ -93,11 +93,11 @@ public class LinkedList {
     }
 
     public int indexOf(int item) {
-        Node cur = first;
+        Node curr = first;
         int idx = 0;
-        while (cur != null) {
-            if (cur.value == item) return idx;
-            cur = cur.next;
+        while (curr != null) {
+            if(curr.value == item) return idx;
+            curr = curr.next;
             idx++;
         }
         return -1;
@@ -109,36 +109,28 @@ public class LinkedList {
 
     public int[] toArray() {
         int[] arr = new int[size];
-        Node cur = first;
+        Node curr = first;
         int idx = 0;
-        while (cur != null) {
-            arr[idx++] = cur.value;
-            cur = cur.next;
+        while (curr != null) {
+            arr[idx++] = curr.value;
+            curr = curr.next;
         }
         return arr;
     }
 
     public void reverse() {
+        if (isEmpty()) return;
 
-        Node keepLast = null;
-        for(int i = 0 ; i < size; i++) {
-
-            Node prev = getPrevious(last);
-            last.next = prev;
-
-            if(i == 0) keepLast = last;
-
-            last = prev;
-
-            if(i == (size - 1) ) {
-                last.next.next = null;
-                last = last.next;
-                first = keepLast;
-            }
+        Node prev = first;
+        Node curr = first.next;
+        while (curr != null) {
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
         }
-    }
-
-    public void reverse2() {
-
+        last = first;
+        last.next = null;
+        first = prev;
     }
 }
