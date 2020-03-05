@@ -154,28 +154,65 @@ public class LinkedList {
         return fp.value;
     }
 
+    //better way
     public void printMiddle() {
+        Node a = first;
+        Node b = first;
+        while (b != last && b.next != last) {
+            b = b.next.next;
+            a = a.next;
+        }
+
+        if (b == last)
+            System.out.println(a.value);
+        else
+            System.out.println(a.value+" "+a.next.value);
+    }
+
+    //my first version
+    public void printMiddle2() {
         if (isEmpty())
             throw new IllegalStateException();
 
         Node f = first;
         Node s = last;
-        boolean b = true;
-        while (b) {
+        while (true) {
             if(f == s) {
-                //return f.value;
                 System.out.println("The middle is: " + f.value);
-                b = false;
+                break;
             }
             else if(f.next == s) {
                 System.out.println("The middle is: " + f.value + " and " + s.value);
-                b = false;
+                break;
             }
             else {
-                //move next
                 f = f.next;
                 s = getPrevious(s);
             }
         }
     }
+
+    public int[] getMiddle() {
+        ArrayTing arr = new ArrayTing(0);
+
+        if(isEmpty())
+            throw new IllegalStateException();
+
+        Node a = first;
+        Node b = first;
+        while(b != last && b.next != last) {
+            b = b.next.next;
+            a = a.next;
+        }
+
+        if (b == last)
+            arr.insert(a.value);
+        else {
+            arr.insert(a.value);
+            arr.insert(a.next.value);
+        }
+        int[] newArr = arr.toArray();
+        return newArr;
+    }
+
 }

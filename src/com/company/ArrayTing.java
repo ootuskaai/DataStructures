@@ -7,6 +7,7 @@ public class ArrayTing {
     private int count;
 
     public ArrayTing(int len) {
+        if (len <= 0) len = 1;
         items = new int[len];
     }
 
@@ -100,7 +101,7 @@ public class ArrayTing {
         return count - 1;
     }
 
-    public int curCount() {
+    public int currCount() {
         return count;
     }
 
@@ -132,6 +133,14 @@ public class ArrayTing {
             if(!other.contains(item))
                 notIntersect.insert(item);
         return notIntersect;
+    }
+
+    public int[] toArray() {
+        int[] arr = new int[count];
+        for(int i = 0; i < count; i++) {
+            arr[i] = items[i];
+        }
+        return arr;
     }
 
     public void print() {
