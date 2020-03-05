@@ -1,14 +1,14 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
-        ArrayTing numbers = new ArrayTing(3);
-        numbers.insert(100);
-        numbers.insert(200);
-        numbers.insert(300);
-        numbers.reverse();
-        numbers.print();
 
+        LinkedList list = new LinkedList();
+        list.addLast(10);
+        list.addLast(20);
+        list.addLast(30);
     }
 }
