@@ -134,19 +134,7 @@ public class LinkedList {
         first = prev;
     }
 
-    //will dont know size
-    //and we cant get size
     public int getKthFromTheEnd(int Kth) {
-        //first 10 last 50
-        //[10 -> 20 -> 30 -> 40 -> 50]
-        //fp/sp
-        //k=3 d=2
-        //fp           sp
-        //      fp           sp
-        //              fp          sp
-        // return fp
-
-
         if (isEmpty())
             throw new IllegalStateException();
 
@@ -164,5 +152,30 @@ public class LinkedList {
         }
 
         return fp.value;
+    }
+
+    public void printMiddle() {
+        if (isEmpty())
+            throw new IllegalStateException();
+
+        Node f = first;
+        Node s = last;
+        boolean b = true;
+        while (b) {
+            if(f == s) {
+                //return f.value;
+                System.out.println("The middle is: " + f.value);
+                b = false;
+            }
+            else if(f.next == s) {
+                System.out.println("The middle is: " + f.value + " and " + s.value);
+                b = false;
+            }
+            else {
+                //move next
+                f = f.next;
+                s = getPrevious(s);
+            }
+        }
     }
 }
