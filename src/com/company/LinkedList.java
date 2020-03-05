@@ -119,15 +119,26 @@ public class LinkedList {
     }
 
     public void reverse() {
-        //[10 => 20 => 30]
-        //[10 <= 29 <= 30] ==> [30,20,10]
-        Node orFirst = first;
-        Node orLast = last;
 
-        Node curr = last;
+        Node keepLast = null;
+        for(int i = 0 ; i < size; i++) {
 
+            Node prev = getPrevious(last);
+            last.next = prev;
 
+            if(i == 0) keepLast = last;
 
+            last = prev;
+
+            if(i == (size - 1) ) {
+                last.next.next = null;
+                last = last.next;
+                first = keepLast;
+            }
+        }
+    }
+
+    public void reverse2() {
 
     }
 }
