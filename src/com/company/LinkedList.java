@@ -133,4 +133,36 @@ public class LinkedList {
         last.next = null;
         first = prev;
     }
+
+    //will dont know size
+    //and we cant get size
+    public int getKthFromTheEnd(int Kth) {
+        //first 10 last 50
+        //[10 -> 20 -> 30 -> 40 -> 50]
+        //fp/sp
+        //k=3 d=2
+        //fp           sp
+        //      fp           sp
+        //              fp          sp
+        // return fp
+
+
+        if (isEmpty())
+            throw new IllegalStateException();
+
+        Node fp = first;
+        Node sp = first;
+        int dst = Kth - 1;
+        for (int i = 0; i < dst; i++) {
+            sp = sp.next;
+            if(sp == null)
+                throw new IllegalArgumentException();
+        }
+        while (sp != last) {
+            fp = fp.next;
+            sp = sp.next;
+        }
+
+        return fp.value;
+    }
 }
