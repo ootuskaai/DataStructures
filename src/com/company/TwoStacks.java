@@ -12,51 +12,64 @@ public class TwoStacks {
             throw new IllegalArgumentException("capacity must be 1 or greater.");
         items = new int[capacity];
         top1 = -1;
-        top2 = -2;
+        top2 = capacity;
     }
 
     @Override
     public String toString() {
-        if(top1 < 0 || top2 < 0) return "empty now";
-
-        int to = top1 > top2 ? top1 + 1 : top2 + 1;
-        int[] content = Arrays.copyOfRange(items,0, to);
-        return Arrays.toString(content);
+        return Arrays.toString(items);
     }
 
     public void push1(int item) {
-        if(isFull(top1))
+        if(isFull1())
             throw new StackOverflowError();
-        items[top1 += 2] = item;
+        items[++top1] = item;
     }
 
     public void push2(int item) {
-        if (isFull(top2))
+        if (isFull2())
             throw new StackOverflowError();
-        items[top2 += 2] = item;
+        items[--top2] = item;
     }
 
     public int pop1() {
-        if (isEmpty())
+        if (isEmpty1())
             throw new IllegalStateException();
-        int item = items[top1];
-        top1 -= 2;
-        return item;
+        return items[top1--];
     }
 
     public int pop2() {
-        if (isEmpty())
+        if (isEmpty2())
             throw new IllegalStateException();
-        int item = items[top2];
-        top2 -= 2;
-        return item;
+        return items[top2++];
     }
 
-    public boolean isEmpty() {
-        return top1 == -1 && top2 == -2;
+    public int peek1() {
+        if (isEmpty1())
+            throw new IllegalStateException();
+        return items[top1];
     }
 
-    private boolean isFull(int point) {
-        return point > items.length - 1;
+    public int peek2() {
+        if(isEmpty2())
+            throw new IllegalStateException();
+        return items[top2];
     }
+
+    public boolean isEmpty1() {
+        return top1 == -1;
+    }
+
+    public boolean isEmpty2() {
+        return top2 == items.length;
+    }
+
+    private boolean isFull1() {
+        return top1 + 1 == top2;
+    }
+
+    public boolean isFull2() {
+        return top2 - 1 == top1;
+    }
+
 }
