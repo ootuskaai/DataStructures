@@ -11,12 +11,19 @@ public class ArrayQueue {
     private int count;
 
     public ArrayQueue(int capacity) {
+        if (capacity < 0)
+            throw new IllegalArgumentException("capacity need greater than 0");
         items = new int[capacity];
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(items);
     }
 
     public void enqueue(int item) {
         if(count == items.length)
-            throw new IllegalStateException("capacity full");
+            throw new IllegalStateException("capacity is full");
 
         items[rear] = item;
         rear = (rear + 1) % items.length;
@@ -25,17 +32,12 @@ public class ArrayQueue {
 
     public int dequeue() {
         if(count == 0)
-            throw new IllegalStateException();
+            throw new IllegalStateException("queue is empty now");
 
         int item = items[front];
         items[front] = 0;
         front = (front + 1) % items.length;
         count--;
-        return item;
-    }
-
-    @Override
-    public String toString() {
-        return Arrays.toString(items);
+        return  item;
     }
 }
