@@ -36,5 +36,7 @@ public class Stack {
         return items[count];
     }
 
-
+    public boolean isEmpty() {
+        return count == 0;
+    }
 }
