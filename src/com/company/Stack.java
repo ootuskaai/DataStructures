@@ -7,9 +7,15 @@ public class Stack {
     private int count;
 
     public Stack(int len) {
-        if (len <= 0)
+        if(len <= 0)
             throw new IllegalArgumentException();
         items = new int[len];
+    }
+
+    @Override
+    public String toString() {
+        int[] content = Arrays.copyOfRange(items, 0, count);
+        return Arrays.toString(content);
     }
 
     public void push(int item) {
@@ -19,7 +25,7 @@ public class Stack {
     }
 
     public int pop() {
-        if (count == 0)
+        if(count == 0)
             throw new IllegalStateException();
         return items[--count];
     }
@@ -27,16 +33,8 @@ public class Stack {
     public int peek() {
         if (count == 0)
             throw new IllegalStateException();
-        return items[count - 1];
+        return items[count];
     }
 
-    public boolean isEmpty() {
-        return count == 0;
-    }
 
-    @Override
-    public String toString() {
-        int[] content = Arrays.copyOfRange(items,0,count);
-        return Arrays.toString(content);
-    }
 }
