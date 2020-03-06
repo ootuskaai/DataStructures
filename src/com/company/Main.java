@@ -1,15 +1,20 @@
 package com.company;
 
 import java.util.Arrays;
-import java.util.Stack;
 
 public class Main {
 
     public static void main(String[] args) {
-        //Edge cases
-        Expression exp = new Expression();
-        String str = "(1 + 2)";
-        boolean b = exp.isBalance(str);
-        System.out.println(b);
+        TwoStacks stacks = new TwoStacks(5);
+        stacks.push1(10);
+        stacks.push1(20);
+        stacks.push1(30);
+        stacks.push2(1);
+        stacks.push2(2);
+
+        int a = stacks.peek1();
+        System.out.println("a: " + a);
+
+        System.out.println(stacks.toString());
     }
 }
