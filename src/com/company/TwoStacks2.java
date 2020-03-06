@@ -2,12 +2,12 @@ package com.company;
 
 import java.util.Arrays;
 
-public class TwoStacks {
+public class TwoStacks2 {
     private int[] items;
     private int top1;
     private int top2;
 
-    public TwoStacks(int capacity) {
+    public TwoStacks2(int capacity) {
         if(capacity <= 0)
             throw new IllegalArgumentException("capacity must be 1 or greater.");
         items = new int[capacity];
