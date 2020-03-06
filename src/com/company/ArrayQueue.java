@@ -10,7 +10,7 @@ public class ArrayQueue {
     private int count;
 
     public ArrayQueue(int capacity) {
-        if (capacity < 0)
+        if (capacity <= 0)
             throw new IllegalArgumentException("capacity need greater than 0");
         items = new int[capacity];
     }
@@ -38,5 +38,17 @@ public class ArrayQueue {
         front = (front + 1) % items.length;
         count--;
         return  item;
+    }
+
+    public int peek() {
+        return  0;
+    }
+
+    public boolean isEmpty() {
+        return true;
+    }
+
+    public boolean isFull() {
+        return true;
     }
 }
