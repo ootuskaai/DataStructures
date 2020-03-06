@@ -133,4 +133,86 @@ public class LinkedList {
         last.next = null;
         first = prev;
     }
+
+    public int getKthFromTheEnd(int Kth) {
+        if (isEmpty())
+            throw new IllegalStateException();
+
+        Node fp = first;
+        Node sp = first;
+        int dst = Kth - 1;
+        for (int i = 0; i < dst; i++) {
+            sp = sp.next;
+            if(sp == null)
+                throw new IllegalArgumentException();
+        }
+        while (sp != last) {
+            fp = fp.next;
+            sp = sp.next;
+        }
+
+        return fp.value;
+    }
+
+    //better way
+    public void printMiddle() {
+        Node a = first;
+        Node b = first;
+        while (b != last && b.next != last) {
+            b = b.next.next;
+            a = a.next;
+        }
+
+        if (b == last)
+            System.out.println(a.value);
+        else
+            System.out.println(a.value+" "+a.next.value);
+    }
+
+    //my first version
+    public void printMiddle2() {
+        if (isEmpty())
+            throw new IllegalStateException();
+
+        Node f = first;
+        Node s = last;
+        while (true) {
+            if(f == s) {
+                System.out.println("The middle is: " + f.value);
+                break;
+            }
+            else if(f.next == s) {
+                System.out.println("The middle is: " + f.value + " and " + s.value);
+                break;
+            }
+            else {
+                f = f.next;
+                s = getPrevious(s);
+            }
+        }
+    }
+
+    public int[] getMiddle() {
+        ArrayTing arr = new ArrayTing(0);
+
+        if(isEmpty())
+            throw new IllegalStateException();
+
+        Node a = first;
+        Node b = first;
+        while(b != last && b.next != last) {
+            b = b.next.next;
+            a = a.next;
+        }
+
+        if (b == last)
+            arr.insert(a.value);
+        else {
+            arr.insert(a.value);
+            arr.insert(a.next.value);
+        }
+        int[] newArr = arr.toArray();
+        return newArr;
+    }
+
 }
