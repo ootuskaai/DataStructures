@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class ArrayQueue {
     //ArrayQueue (ArrayDeque)
-
     private int[] items;
     private int rear;
     private int front;
