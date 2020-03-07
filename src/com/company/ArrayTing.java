@@ -22,8 +22,6 @@ public class ArrayTing {
 
         resizeIfRequired();
 
-        //fill the last one than and so on until reach at the index
-        //items[i + 1] => last one
         for (int i = count - 1; i >= index; i--)
             items[i + 1] = items[i];
 
@@ -35,7 +33,7 @@ public class ArrayTing {
         if(index < 0 || index >= count)
             throw new IllegalArgumentException();
 
-        for(int i = index; i + 1 < count; i++) {
+        for(int i = index; i < count - 1; i++) {
             items[i] = items[i + 1];
         }
         count--;
@@ -58,15 +56,19 @@ public class ArrayTing {
     }
 
     public int max() {
+        if (isEmpty())
+            throw new IllegalStateException("array is empty");
         int max = items[0];
         for (int item:items)
             if (item > max)
                 max = item;
-
         return max;
     }
 
     public int min() {
+        if (isEmpty())
+            throw new IllegalStateException("array is empty");
+
         int min = items[0];
         for(int item:items)
             if(item < min)
@@ -75,30 +77,33 @@ public class ArrayTing {
     }
 
     public int sum() {
-        int sum = 0;
+        if (isEmpty())
+            throw new IllegalStateException("array is empty");
+
+        int sum = items[0];
         for (int item:items)
             sum += item;
         return sum;
     }
 
     public int countByItem(int item) {
-        int countItem = 0;
+        int acc = 0;
         for (int i:items)
             if(i == item)
-                countItem++;
-        return countItem;
+                acc++;
+        return acc;
     }
 
     public int firstItem() {
+        if (isEmpty())
+            throw new IllegalStateException("array is empty");
         return items[0];
     }
 
     public int lastItem() {
+        if (isEmpty())
+            throw new IllegalStateException("array is empty");
         return items[count - 1];
-    }
-
-    public int lastItemIndex() {
-        return count - 1;
     }
 
     public int currCount() {
@@ -113,6 +118,9 @@ public class ArrayTing {
     }
 
     public void reverse() {
+        if (isEmpty())
+            throw new IllegalStateException("array is empty");
+
         int[] newItems = new int[count];
         for(int i = 0; i < count; i++)
             newItems[i] = items[count - (i + 1)];
@@ -120,6 +128,11 @@ public class ArrayTing {
     }
 
     public ArrayTing intersect(ArrayTing other) {
+        if (count == 0 || other.currCount() == 0)
+            throw new IllegalStateException("array is empty");
+        else if (other == null)
+            throw new IllegalArgumentException("other is null");
+
         ArrayTing intersect = new ArrayTing(count);
         for(int item:items)
             if(other.contains(item))
@@ -128,6 +141,11 @@ public class ArrayTing {
     }
 
     public ArrayTing notIntersect(ArrayTing other) {
+        if (count == 0 || other.currCount() == 0)
+            throw new IllegalStateException("array is empty");
+        else if (other == null)
+            throw new IllegalArgumentException("other is null");
+
         ArrayTing notIntersect = new ArrayTing(count);
         for (int item: items)
             if(!other.contains(item))
@@ -136,11 +154,23 @@ public class ArrayTing {
     }
 
     public int[] toArray() {
+        if (isEmpty())
+            throw new IllegalStateException("array is empty");
+
         int[] arr = new int[count];
         for(int i = 0; i < count; i++) {
             arr[i] = items[i];
         }
         return arr;
+    }
+
+    private boolean isEmpty() {
+        return count == 0;
+    }
+
+    private void isEmptyError() {
+        if (isEmpty())
+            throw new IllegalStateException("array is empty");
     }
 
     public void print() {
