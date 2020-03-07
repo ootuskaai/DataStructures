@@ -5,7 +5,11 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        ArrayTing arr = new ArrayTing(3);
-        int[] a = arr.toArray();
+        ArrayQueue arrayQueue = new ArrayQueue(3);
+        arrayQueue.enqueue(10);
+        arrayQueue.enqueue(20);
+        arrayQueue.enqueue(30);
+        boolean isEmpty = arrayQueue.isEmpty();
+        boolean isFull = arrayQueue.isFull();
     }
 }

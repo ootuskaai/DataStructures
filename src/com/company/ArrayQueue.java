@@ -10,7 +10,7 @@ public class ArrayQueue {
     private int count;
 
     public ArrayQueue(int capacity) {
-        if (capacity <= 0)
+        if(capacity <= 0)
             throw new IllegalArgumentException("capacity need greater than 0");
         items = new int[capacity];
     }
@@ -21,34 +21,36 @@ public class ArrayQueue {
     }
 
     public void enqueue(int item) {
-        if(count == items.length)
+        if (isFull())
             throw new IllegalStateException("capacity is full");
 
         items[rear] = item;
-        rear = (rear + 1) % items.length;
+        rear = (rear + 1 ) % items.length;
         count++;
     }
 
     public int dequeue() {
-        if(count == 0)
+        if(isEmpty())
             throw new IllegalStateException("queue is empty now");
 
         int item = items[front];
         items[front] = 0;
-        front = (front + 1) % items.length;
+        front = (front + 1 ) % items.length;
         count--;
-        return  item;
+        return item;
     }
 
     public int peek() {
-        return  0;
+        if(count == 0)
+            throw new IllegalStateException("queue is empty now");
+        return items[front];
     }
 
     public boolean isEmpty() {
-        return true;
+        return count == 0;
     }
 
     public boolean isFull() {
-        return true;
+        return count == items.length;
     }
 }
