@@ -1,23 +1,23 @@
 package com.company;
 
-import java.util.Arrays;
+
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 public class Main {
 
     public static void main(String[] args) {
-        ArrayQueue arrayQueue = new ArrayQueue(5);
-        arrayQueue.enqueue(10);
-        arrayQueue.enqueue(20);
-        arrayQueue.enqueue(30);
-        arrayQueue.dequeue();
-        arrayQueue.dequeue();
-        arrayQueue.enqueue(40);
-        arrayQueue.enqueue(50);
-        arrayQueue.enqueue(60);
-        arrayQueue.enqueue(70);
-        arrayQueue.dequeue();
-        arrayQueue.enqueue(80);
-        String s = arrayQueue.toString();
-        System.out.println(s);
+        StackWithTwoQueues sq = new StackWithTwoQueues();
+        sq.push(10);
+        sq.push(20);
+        sq.push(30);
+        sq.pop();
+        sq.pop();
+        int a = sq.peek();
+        System.out.println(a);
+
+        sq.push(40);
+        int b = sq.peek();
+        System.out.println(b);
     }
 }
