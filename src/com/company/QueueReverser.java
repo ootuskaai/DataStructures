@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class QueueReverser {
 
-    public static void reverse(Queue<Integer> queue, int k) {
+    public static Queue<Integer> reverse(Queue<Integer> queue, int k) {
         if(k < 0 || k > queue.size())
             throw new IllegalArgumentException();
 
@@ -18,5 +18,7 @@ public class QueueReverser {
 
         for (int i = 0;i < queue.size() - k; i++)
             queue.add(queue.remove());
+
+        return queue;
     }
 }
