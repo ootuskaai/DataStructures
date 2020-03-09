@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.LinkedList;
 
 public class HashTable {
@@ -14,16 +15,15 @@ public class HashTable {
     }
 
     private LinkedList<Entry>[] entries;
-
     public HashTable(int capacity) {
-        if (capacity <= 0)
+        if(capacity <= 0)
             throw new IllegalArgumentException("capacity need to more than 0");
         entries = new LinkedList[capacity];
     }
 
     public void put(int key, String value) {
         int idx = hash(key);
-        if(entries[idx] == null)
+        if (entries[idx] == null)
             entries[idx] = new LinkedList<>();
 
         LinkedList<Entry> bucket = entries[idx];
@@ -33,7 +33,6 @@ public class HashTable {
                 return;
             }
         }
-
         bucket.addLast(new Entry(key, value));
     }
 
@@ -41,10 +40,9 @@ public class HashTable {
         int idx = hash(key);
         LinkedList<Entry> bucket = entries[idx];
         if (bucket != null) {
-            for (Entry entry: bucket) {
+            for(Entry entry: bucket)
                 if(entry.key == key)
-                    return  entry.value;
-            }
+                    return entry.value;
         }
         return null;
     }
