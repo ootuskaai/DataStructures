@@ -14,6 +14,7 @@ public class Main {
         map.put(8,"B");//3 B
         map.put(11,"C");//1 C
         map.put(6, "A+");
+        map.remove(6);
         System.out.println(map.get(6));
         System.out.println(map.get(8));
         System.out.println(map.get(10));
