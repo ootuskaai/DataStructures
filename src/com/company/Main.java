@@ -2,22 +2,21 @@ package com.company;
 
 
 import java.util.ArrayDeque;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Queue;
 
 public class Main {
 
     public static void main(String[] args) {
-        StackWithTwoQueues sq = new StackWithTwoQueues();
-        sq.push(10);
-        sq.push(20);
-        sq.push(30);
-        sq.pop();
-        sq.pop();
-        int a = sq.peek();
-        System.out.println(a);
+        String s = "0";
+        System.out.println(s.hashCode());
+    }
 
-        sq.push(40);
-        int b = sq.peek();
-        System.out.println(b);
+    public static int hash(String key) {
+        int hash = 0;
+        for (char ch: key.toCharArray())
+            hash += ch;
+        return hash % 100;
     }
 }
