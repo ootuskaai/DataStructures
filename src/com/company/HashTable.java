@@ -15,19 +15,18 @@ public class HashTable {
 
     private LinkedList<Entry>[] entries;
 
-    public HashTable(int len) {
-        if (len <= 0)
-            throw new IllegalArgumentException();
-
-        entries = new LinkedList[len];
+    public HashTable(int capacity) {
+        if (capacity <= 0)
+            throw new IllegalArgumentException("capacity need to more than 0");
+        entries = new LinkedList[capacity];
     }
 
     public void put(int key, String value) {
-        int index = hash(key);
-        if (entries[index] == null)
-            entries[index] = new LinkedList<>();
+        int idx = hash(key);
+        if(entries[idx] == null)
+            entries[idx] = new LinkedList<>();
 
-        LinkedList<Entry> bucket = entries[index];
+        LinkedList<Entry> bucket = entries[idx];
         for (Entry entry: bucket) {
             if(entry.key == key) {
                 entry.value = value;
@@ -36,6 +35,18 @@ public class HashTable {
         }
 
         bucket.addLast(new Entry(key, value));
+    }
+
+    public String get(int key) {
+        int idx = hash(key);
+        LinkedList<Entry> bucket = entries[idx];
+        if (bucket != null) {
+            for (Entry entry: bucket) {
+                if(entry.key == key)
+                    return  entry.value;
+            }
+        }
+        return null;
     }
 
     private int hash(int key) {
